@@ -1,0 +1,5 @@
+{
+ "run_list":[
+	"recipe[setup-mongo::mongo-clenup]"
+ ]
+}
