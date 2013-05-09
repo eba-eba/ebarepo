@@ -2,5 +2,6 @@
  "run_list": [
         "recipe[mongodb]"],
 
- "mongodb": {"repname": "myrep"}
+ "mongodb": {
+	"repname": "myrep"}
 }
