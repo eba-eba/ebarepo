@@ -8,6 +8,7 @@
 #
 bash "setup-mongo" do
         user "root"
+	flags "-e"
         code <<-EOH
         #MongoDB 停止
         mongo admin --eval "db.shutdownServer()"
