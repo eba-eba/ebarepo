@@ -1,0 +1,8 @@
+{"recipes" :[
+	"nginx::nginx_phpfpm-install"],
+
+ "nginx" :{
+	"nginx_confname": "phpfpm-nginx-http.conf.erb",
+	"nginx_server_name": "eba-zero01",
+	"nginx_DocumentRoot": "/var/www/html"}
+}

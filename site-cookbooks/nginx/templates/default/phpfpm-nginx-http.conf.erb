@@ -1,0 +1,61 @@
+# HTTP server
+
+server {
+    listen       80;
+    server_name <%= node.nginx.nginx_server_name %>;
+
+    access_log  /var/log/nginx/access.log;
+
+    location / {
+        #root   /usr/share/nginx/html;
+        root <%= node.nginx.nginx_DocumentRoot %>;
+        index  index.php index.html index.htm;
+        #proxy_set_header Host $host;
+        #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #proxy_set_header X-Forwarded-Host $host;
+        #proxy_set_header X-Forwarded-Server $host;
+        #proxy_set_header X-Real-IP $remote_addr;
+        #proxy_pass http://http_backend;
+    }
+
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    location ~ \.php$ {
+        #root           html;
+        #root   /usr/share/nginx/html;
+        root /var/www/html;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+
+        # cache settings
+        #fastcgi_cache_valid   200 302  1h;
+        #fastcgi_cache_valid   301      1d;
+        #fastcgi_cache_valid   any      1m;
+        #fastcgi_cache_min_uses  1;
+        #fastcgi_cache_use_stale error  timeout invalid_header http_500;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+
+    # nginx status
+    location /nginx_status {
+        stub_status on;
+        access_log   off;
+        allow 121.111.247.30;
+    }
+    # php fpm status
+    location = /status {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        fastcgi_pass 127.0.0.1:9000;
+        allow 121.111.247.30;
+        access_log off;
+    }
+}
