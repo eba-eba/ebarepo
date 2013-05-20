@@ -1,0 +1,10 @@
+[mysqld]
+datadir=<%= node.mysql.mysql_datadir %>
+socket=<%= node.mysql.mysql_socket %>
+user=<%= node.mysql.mysql_user %>
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=<%= node.mysql.mysql_symbolic_links %>
+
+[mysqld_safe]
+log-error=<%= node.mysql.mysql_log_error %>
+pid-file=<%= node.mysql.mysql_pid_file %>

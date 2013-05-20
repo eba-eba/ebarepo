@@ -1,0 +1,6 @@
+default["mysql"]["mysql_datadir"] = "/var/lib/mysql"
+default["mysql"]["mysql_socket"] = "/var/lib/mysql/mysql.sock"
+default["mysql"]["mysql_user"] = "mysql"
+default["mysql"]["mysql_symbolic_links"]  = "0"
+default["mysql"]["mysql_log_error"] = "/var/log/mysqld.log"
+default["mysql"]["mysql_pid_file"] = "/var/run/mysqld/mysqld.pid"
